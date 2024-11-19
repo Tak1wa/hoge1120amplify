@@ -6,7 +6,7 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.guest()]),
-  Chat: a.conversation({
+  chat: a.conversation({
     aiModel: a.ai.model('Claude 3 Haiku'),
     systemPrompt: 'You are a helpful assistant',
   })
@@ -24,6 +24,7 @@ const schema = a.schema({
       instructions: a.string(),
     })
   )
+  .authorization((allow) => allow.authenticated()),
 });
 
 export type Schema = ClientSchema<typeof schema>;
